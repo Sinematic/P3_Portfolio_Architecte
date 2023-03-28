@@ -1,16 +1,15 @@
 const portfolio = document.getElementById("portfolio");
 const gallery = document.querySelector(".gallery");
 
-const noFilter = document.getElementById("no-filter");
-const objects = document.getElementById("objects");
-const houses = document.getElementById("houses");
-const hotelsRestaurants = document.getElementById("hotels-restaurants");
+const btnNoFilter = document.getElementById("btn-no-filter");
+const btnObjects = document.getElementById("btn-objects");
+const btnHouses = document.getElementById("btn-houses");
+const btnHotelsRestaurants = document.getElementById("btn-hotels-restaurants");
 
 
 getData();
+displayBtnColor(btnNoFilter);
 
-noFilter.style.color = "white";
-noFilter.style.backgroundColor = "#1D6154";
 
 async function getData(url = "works") {
 
@@ -57,40 +56,6 @@ async function getCategories() {
 }
 
 
-getCategories();
-
-noFilter.addEventListener("click", function() {
-
-    getData();
-    noFilter.style.color = "white";
-    noFilter.style.backgroundColor = "#1D6154";
-});
-
-
-objects.addEventListener("click", function() {
-
-    displayCategory(1);
-    noFilter.style.color = "#1D6154";
-    noFilter.style.backgroundColor = "white";
-});
-
-
-houses.addEventListener("click", function() {
-
-    displayCategory(2);
-    noFilter.style.color = "#1D6154";
-    noFilter.style.backgroundColor = "white";
-});
-
-
-hotelsRestaurants.addEventListener("click", function() {
-
-    displayCategory(3);
-    noFilter.style.color = "#1D6154";
-    noFilter.style.backgroundColor = "white";
-});
-
-
 async function displayCategory(int) {
 
     const url = "http://localhost:5678/api/works"
@@ -109,3 +74,49 @@ async function displayCategory(int) {
         
     }
 }
+
+
+function displayBtnColor(btn) {
+
+    const buttons = document.querySelectorAll("button");
+
+    for (let i = 0; i < buttons.length; i++)
+    {
+        buttons[i].style.color = "#1D6154";
+        buttons[i].style.backgroundColor = "white";
+    }
+    
+    btn.style.backgroundColor = "#1D6154";
+    btn.style.color = "white";
+}
+
+
+getCategories();
+
+btnNoFilter.addEventListener("click", function() {
+
+    getData();
+    displayBtnColor(btnNoFilter);
+});
+
+
+btnObjects.addEventListener("click", function() {
+
+    displayCategory(1);
+    displayBtnColor(btnObjects);
+});
+
+
+btnHouses.addEventListener("click", function() {
+
+    displayCategory(2);
+    displayBtnColor(btnHouses);
+});
+
+
+btnHotelsRestaurants.addEventListener("click", function() {
+
+    displayCategory(3);
+    displayBtnColor(btnHotelsRestaurants);
+
+});
