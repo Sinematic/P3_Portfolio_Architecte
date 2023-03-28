@@ -22,7 +22,6 @@ async function getData(url = "works") {
     for (let i = 0; i < result.length; i++)
     {
         renderWork(result[i]);
-        console.log(result[i]);
     }
 }
 

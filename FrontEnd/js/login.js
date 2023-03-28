@@ -1,15 +1,52 @@
 const submit = document.getElementById("login-submit");
+let connected = false;
+
+async function login() {
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    if (email !== "" && password !== "") {
+
+        const combo = JSON.stringify({
+            "email": email,
+            "password": password
+        });
+    
+        console.log(combo[0], combo[1]);
 
 
-function login() {
+        const response = await fetch("http://localhost:5678/api/users/login", 
+        {
+            method: "POST",
+            body: combo,
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+    
+        console.log(response.ok);
+    
+        if (response.ok) {
 
-    const email = document.getElementById("email");
-    const password = document.getElementById("password");
+            connected = true;
+            console.log(connected);
+            window.location.href = "index.html";
 
-    const value = email.value;
-    const value2 = password.value;
+        } else {
 
-    console.log(value, value2);
+            const login = document.getElementById("login");
+            let message = document.createElement("p");
+            
+            message.classList.add("error-message");
+            message.innerText = "Identifiants incorrects !";
+            
+            login.appendChild(message);
+
+        }
+
+    }
+
 }
 
 
