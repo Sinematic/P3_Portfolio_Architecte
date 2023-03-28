@@ -1,7 +1,10 @@
 const portfolio = document.getElementById("portfolio");
 const gallery = document.querySelector(".gallery");
 
-async function getData(url) {
+getData();
+
+
+async function getData(url = "works") {
 
     const base = "http://localhost:5678/api/"
     const response = await fetch(base + url);
@@ -13,15 +16,13 @@ async function getData(url) {
     }
 }
 
-getData("works");
-
 
 function renderWork(work) {
 
     const figure = document.createElement("figure");
     const img = document.createElement("img"); 
     const figcaption = document.createElement("figcaption");
-    
+
     figcaption.innerText = work.title;
     img.src = work.imageUrl
     img.alt = work.title;
@@ -32,11 +33,11 @@ function renderWork(work) {
     gallery.appendChild(figure);
 }
 
+
 async function getCategories() {
 
-    const response = await fetch("http://localhost:5678/api/works");
+    const response = await fetch("http://localhost:5678/api/categories");
     const result = await response.json();
-    console.log(result);
 
     for(let i = 0; i < result.length; i++)
     {
@@ -45,3 +46,13 @@ async function getCategories() {
 }
 
 getCategories();
+
+const noFilter = document.getElementById("no-filter");
+const objects = document.getElementById("objects");
+const houses = document.getElementById("houses");
+const hotelsRestaurants = document.getElementById("hotels-restaurants");
+
+noFilter.addEventListener("click", function() {
+
+    getData();
+});
