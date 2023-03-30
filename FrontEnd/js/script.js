@@ -1,11 +1,25 @@
 const portfolio = document.getElementById("portfolio");
 const gallery = document.querySelector(".gallery");
+const login = document.getElementById("login");
+const logout = document.getElementById("logout");
 
 const btnNoFilter = document.getElementById("btn-no-filter");
 const btnObjects = document.getElementById("btn-objects");
 const btnHouses = document.getElementById("btn-houses");
 const btnHotelsRestaurants = document.getElementById("btn-hotels-restaurants");
 
+const token = window.localStorage.getItem("token");
+
+if (token) {
+
+    login.style.display = "none";
+    logout.style.display = "block";
+
+} else {
+    
+    login.style.display = "block";
+    logout.style.display = "none";
+}
 
 getData();
 displayBtnColor(btnNoFilter);
@@ -23,6 +37,7 @@ async function getData(url = "works") {
     {
         renderWork(result[i]);
     }
+
 }
 
 

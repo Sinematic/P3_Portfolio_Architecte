@@ -1,5 +1,10 @@
 const submit = document.getElementById("login-submit");
-let connected = false;
+const token = window.localStorage.getItem("token");
+console.log(token);
+
+if (token) {
+    window.location.href = "index.html";
+}
 
 async function login() {
 
@@ -12,8 +17,6 @@ async function login() {
             "email": email,
             "password": password
         });
-    
-        console.log(combo[0], combo[1]);
 
 
         const response = await fetch("http://localhost:5678/api/users/login", 
@@ -24,13 +27,15 @@ async function login() {
                 "Content-Type": "application/json"
             }
         });
-    
-        console.log(response.ok);
+        
+        // console.log(response);
     
         if (response.ok) {
 
-            connected = true;
-            console.log(connected);
+            const result = await response.json();
+            const token = result.token;
+            console.log(result.token);
+            window.localStorage.setItem("token", token);
             window.location.href = "index.html";
 
         } else {
