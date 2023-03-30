@@ -1,11 +1,18 @@
-import { displayError } from "./alerts.js";
+import { displayError, displaySuccess } from "./alerts.js";
 
 const submit = document.getElementById("login-submit");
 const token = window.localStorage.getItem("token");
+const success = window.localStorage.getItem("success-message");
+const form = document.querySelector("form");
+
 console.log(token);
 
 if (token) {
     window.location.href = "index.html";
+}
+
+if (success) {
+    displaySuccess("Déconnexion . . .", form, "disconnected");
 }
 
 async function login() {
@@ -39,11 +46,11 @@ async function login() {
             console.log(result.token);
             window.localStorage.setItem("token", token);
             window.localStorage.setItem("temp", result);
+            window.localStorage.setItem("success-message", "Identifiants acceptés !");
             window.location.href = "index.html";
 
         } else {
 
-            const form = document.querySelector("form");
             displayError("Identifiants incorrects !", form, "wrong-id");
             document.getElementById("email").value = "";
             document.getElementById("password").value = "";

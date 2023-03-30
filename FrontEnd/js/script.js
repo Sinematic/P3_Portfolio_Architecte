@@ -1,3 +1,5 @@
+import { displayError, displaySuccess } from "./alerts.js";
+
 const portfolio = document.getElementById("portfolio");
 const gallery = document.querySelector(".gallery");
 
@@ -10,6 +12,9 @@ const btnHouses = document.getElementById("btn-houses");
 const btnHotelsRestaurants = document.getElementById("btn-hotels-restaurants");
 
 const token = window.localStorage.getItem("token");
+const success = window.localStorage.getItem("success-message");
+
+console.log(success);
 
 if (token) {
 
@@ -20,6 +25,11 @@ if (token) {
     
     login.style.display = "block";
     logout.style.display = "none";
+}
+
+if (success) {
+
+    displaySuccess(success, portfolio, "authentified");
 }
 
 getData();

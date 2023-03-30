@@ -317,7 +317,26 @@ a {
 	font-weight: bold;
 }
 
-#wrong-id {
+#wrong-id, #disconnected {
 	position: relative;
 	bottom: 325px;
+}
+
+.success-message {
+	width: 379px;
+	background-color: rgb(3, 209, 41) ;
+	border-radius: 15px;
+	color: #1D6154;
+	font-size: 18px;
+	padding: 15px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	border: 2px solid #1D6154;
+	font-weight: bold;
+}
+
+#authentified {
+	margin-top: -2700px;
+	margin-bottom: 2700px;
 }
