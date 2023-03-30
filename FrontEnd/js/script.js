@@ -1,5 +1,6 @@
 const portfolio = document.getElementById("portfolio");
 const gallery = document.querySelector(".gallery");
+
 const login = document.getElementById("login");
 const logout = document.getElementById("logout");
 

@@ -1,3 +1,5 @@
+import { displayError } from "./alerts.js";
+
 const submit = document.getElementById("login-submit");
 const token = window.localStorage.getItem("token");
 console.log(token);
@@ -36,20 +38,21 @@ async function login() {
             const token = result.token;
             console.log(result.token);
             window.localStorage.setItem("token", token);
+            window.localStorage.setItem("temp", result);
             window.location.href = "index.html";
 
         } else {
 
-            const login = document.getElementById("login");
-            let message = document.createElement("p");
-            
-            message.classList.add("error-message");
-            message.innerText = "Identifiants incorrects !";
-            
-            login.appendChild(message);
+            const form = document.querySelector("form");
+            displayError("Identifiants incorrects !", form, "wrong-id");
+            document.getElementById("email").value = "";
+            document.getElementById("password").value = "";
+        } 
 
-        }
+    } else {
 
+        const form = document.querySelector("form");
+        displayError("Champs non remplis", form, "wrong-id");
     }
 
 }
