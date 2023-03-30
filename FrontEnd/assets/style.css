@@ -33,6 +33,7 @@ footer, header, hgroup, menu, nav, section {
 
 body {
 	line-height: 1;
+	
 }
 
 ol, ul {
@@ -339,4 +340,9 @@ a {
 #authentified {
 	margin-top: -2700px;
 	margin-bottom: 2700px;
+}
+
+#edit-bar {
+	width: 100%;
+	background-color: #000000;
 }

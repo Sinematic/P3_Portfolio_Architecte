@@ -14,12 +14,11 @@ const btnHotelsRestaurants = document.getElementById("btn-hotels-restaurants");
 const token = window.localStorage.getItem("token");
 const success = window.localStorage.getItem("success-message");
 
-console.log(success);
-
 if (token) {
 
     login.style.display = "none";
     logout.style.display = "block";
+    //displayEditBar();
 
 } else {
     
@@ -89,7 +88,7 @@ async function displayCategory(int) {
 
     gallery.innerHTML = "";
 
-    console.log(result[0].categoryId === int);
+    // console.log(result[0].categoryId === int);
 
     for (let i = 0; i < result.length; i++)
     {
@@ -115,6 +114,15 @@ function displayBtnColor(btn) {
     btn.style.color = "white";
 }
 
+function displayEditBar() {
+
+    const editBar = document.createElement("div");
+    editBar.setAttribute("id", "edit-bar");
+    const header = document.querySelector("header");
+    const body = document.querySelector("body");
+    header.appendChild(editBar);
+
+}
 
 getCategories();
 
