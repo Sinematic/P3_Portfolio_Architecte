@@ -421,6 +421,7 @@ body {
 	display: grid;
 	grid-template-columns: repeat(80px, 5);
 	text-align: left;
+	position: relative;
 }
 
 .modal-div-works p {
@@ -470,13 +471,25 @@ body {
 	color: #FFFFFF;
 	border-radius: 2px;
 	width: 17px;
+	position: absolute;
+	right: 5px;
+	top: 5px;
 }
 
 #edit-bar .div-btn .fa-trash-can {
 	font-size: 9px;
-	padding: 4px 4px;
+	padding: 4px 4px 4px 4.64px;
+}
+
+#xmark {
+	font-size: 20px;
+	position: absolute;
+	top: 32px;
+	right: 36px;
 }
 
 /*
+
 	<i class="fa-solid fa-arrows-up-down-left-right"></i>
+
 */

@@ -116,7 +116,7 @@ async function displayModalGallery() {
         const div = document.createElement("div");
         const img = document.createElement("img");
         const text = document.createElement("p");
-        const divBtn = document.createElement("div");
+        const btnTrashCan = document.createElement("div");
 
         img.src = works[i].imageUrl;
         div.classList.add("modal-div-works");
@@ -127,11 +127,10 @@ async function displayModalGallery() {
         div.appendChild(text);
         modalGallery.appendChild(div);
             
-        divBtn.innerHTML = "<i class='fa-solid fa-trash-can'></i>";
-        divBtn.classList.add("div-btn");
-        div.appendChild(divBtn);
+        btnTrashCan.innerHTML = "<i class='fa-solid fa-trash-can'></i>";
+        btnTrashCan.classList.add("div-btn");
+        div.appendChild(btnTrashCan);
     }
-
 }
 
 
@@ -193,6 +192,11 @@ editBtn.addEventListener("click", function(){
     const modalGallery = document.createElement("div");
     const modalSubmit = document.createElement("button");
     const modalDelete = document.createElement("button");
+    const close = document.createElement("i");
+
+    close.classList.add("fa-solid", "fa-xmark");
+    close.setAttribute("id", "xmark");
+    modal.appendChild(close);
 
     overlay.setAttribute("id", "overlay");
     body.appendChild(overlay);
