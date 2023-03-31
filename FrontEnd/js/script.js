@@ -193,7 +193,13 @@ btnHotelsRestaurants.addEventListener("click", function() {
 
 editBtn.addEventListener("click", function(){
 
-      generateModal();
+    generateModal();
+
+    const modal = document.getElementById("modal");
+
+    modal.scrollIntoView({
+        behavior: "smooth"
+    });
 
 });
 
