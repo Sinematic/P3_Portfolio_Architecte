@@ -254,10 +254,10 @@ a {
 
 #login form {
 	text-align: left;
-	margin-top:30px;
+	margin-top: -9px;
 	display: flex;
 	flex-direction: column;
-	position: absolute;
+
 }
 
 #login input {
@@ -277,13 +277,12 @@ a {
 
 #login #login-submit {
 	width: 179px;
-	margin-top: 37px;
+	margin: 37px auto 0px auto;
 }
 
 #login-submit:hover {
 	background-color: #0E2F28;
 }
-
 
 #forgotten-pw {
 	font-family: 'Work Sans';
@@ -337,10 +336,12 @@ a {
 	font-weight: bold;
 }
 
+
 #authentified {
 	margin-top: -2700px;
 	margin-bottom: 2700px;
 }
+
 
 #edit-bar {
 	width: 100%;
