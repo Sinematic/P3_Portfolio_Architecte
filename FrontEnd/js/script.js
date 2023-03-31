@@ -5,6 +5,7 @@ const gallery = document.querySelector(".gallery");
 
 const login = document.getElementById("login");
 const logout = document.getElementById("logout");
+const filters = document.getElementById("filters");
 
 const btnNoFilter = document.getElementById("btn-no-filter");
 const btnObjects = document.getElementById("btn-objects");
@@ -12,6 +13,7 @@ const btnHouses = document.getElementById("btn-houses");
 const btnHotelsRestaurants = document.getElementById("btn-hotels-restaurants");
 const editBar = document.getElementById("edit-bar");
 const editBtn = document.getElementById("edit-btn");
+const hiddenElements = document.querySelectorAll(".hidden");
 
 const token = window.localStorage.getItem("token");
 const success = window.localStorage.getItem("success-message");
@@ -20,6 +22,12 @@ if (token) {
 
     login.style.display = "none";
     logout.style.display = "block";
+    filters.innerHTML = "";
+
+    for (let i = 0; i < hiddenElements.length; i++)
+    {
+        hiddenElements[i].classList.toggle("hidden");
+    }
     displayEditBar();
 
 } else {
@@ -190,7 +198,7 @@ editBtn.addEventListener("click", function(){
 });
 
 
-function generateModal() {
+function generateModal(modalTitle="Galerie photo") {
 
     const body = document.querySelector("body");
     const overlay = document.createElement("div");
@@ -211,7 +219,7 @@ function generateModal() {
     modal.setAttribute("id", "modal");
     editBar.appendChild(modal);
 
-    title.innerText = "Galerie photo";
+    title.innerText = modalTitle;
     title.setAttribute("id", "gallery-title");
     modal.appendChild(title);
 
@@ -247,9 +255,7 @@ function generateModal() {
             modal.remove();
             overlay.remove();    
         }
-        
 
-  
     });
 
 }

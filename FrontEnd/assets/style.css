@@ -338,8 +338,8 @@ a {
 
 
 #authentified {
-	margin-top: -2700px;
-	margin-bottom: 2700px;
+	margin-top: -2625px;
+	margin-bottom: 2625px;
 }
 
 
@@ -363,7 +363,7 @@ a {
 	padding-right: 9px;
 }
 
-#edit-btn {
+#post-btn {
 	padding: 11px 23px;
 	height: auto;
 	color: #000000;
@@ -493,3 +493,36 @@ body {
 	<i class="fa-solid fa-arrows-up-down-left-right"></i>
 
 */
+
+.edit-text {
+	font-family: "Work Sans";
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 16px;
+	letter-spacing: 0em;
+	text-align: center;
+}
+
+#edit-btn {
+	position: absolute;
+	top: 602px;
+	left: 697px;
+	padding: 0;
+	border: none;
+}
+
+#fake-edit-btn {
+	position: absolute;
+	padding: 0;
+	border: none;
+	top: 560px;
+	left: 58px;
+}
+
+.fa-pen-to-square {
+	padding-right: 8px;
+}
+
+.hidden {
+	display: none;
+}
