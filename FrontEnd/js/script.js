@@ -131,6 +131,7 @@ async function displayModalGallery() {
         btnTrashCan.classList.add("div-btn");
         div.appendChild(btnTrashCan);
     }
+
 }
 
 
@@ -182,8 +183,14 @@ btnHotelsRestaurants.addEventListener("click", function() {
 
 });
 
-
 editBtn.addEventListener("click", function(){
+
+      generateModal();
+
+});
+
+
+function generateModal() {
 
     const body = document.querySelector("body");
     const overlay = document.createElement("div");
@@ -192,11 +199,11 @@ editBtn.addEventListener("click", function(){
     const modalGallery = document.createElement("div");
     const modalSubmit = document.createElement("button");
     const modalDelete = document.createElement("button");
-    const close = document.createElement("i");
+    const xmark = document.createElement("i");
 
-    close.classList.add("fa-solid", "fa-xmark");
-    close.setAttribute("id", "xmark");
-    modal.appendChild(close);
+    xmark.classList.add("fa-solid", "fa-xmark");
+    xmark.setAttribute("id", "xmark");
+    modal.appendChild(xmark);
 
     overlay.setAttribute("id", "overlay");
     body.appendChild(overlay);
@@ -219,6 +226,14 @@ editBtn.addEventListener("click", function(){
     modalDelete.setAttribute("id", "modal-delete");
     modal.appendChild(modalDelete);
 
-    displayModalGallery();    
+    displayModalGallery(); 
 
-});
+    const closeBtn = document.getElementById("xmark");
+
+    closeBtn.addEventListener("click", function() {
+
+        modal.remove();
+        overlay.remove();
+    });
+
+}
