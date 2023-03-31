@@ -10,6 +10,8 @@ const btnNoFilter = document.getElementById("btn-no-filter");
 const btnObjects = document.getElementById("btn-objects");
 const btnHouses = document.getElementById("btn-houses");
 const btnHotelsRestaurants = document.getElementById("btn-hotels-restaurants");
+const editBar = document.getElementById("edit-bar");
+const editBtn = document.getElementById("edit-btn");
 
 const token = window.localStorage.getItem("token");
 const success = window.localStorage.getItem("success-message");
@@ -18,7 +20,7 @@ if (token) {
 
     login.style.display = "none";
     logout.style.display = "block";
-    //displayEditBar();
+    displayEditBar();
 
 } else {
     
@@ -116,11 +118,7 @@ function displayBtnColor(btn) {
 
 function displayEditBar() {
 
-    const editBar = document.createElement("div");
-    editBar.setAttribute("id", "edit-bar");
-    const header = document.querySelector("header");
-    const body = document.querySelector("body");
-    header.appendChild(editBar);
+    editBar.style.display = "flex";
 
 }
 
@@ -151,5 +149,19 @@ btnHotelsRestaurants.addEventListener("click", function() {
 
     displayCategory(3);
     displayBtnColor(btnHotelsRestaurants);
+
+});
+
+editBtn.addEventListener("click", function(){
+
+    const overlay = document.createElement("div");
+    const body = document.querySelector("body");
+    overlay.setAttribute("id", "overlay");
+    const modal = document.createElement("div");
+    modal.setAttribute("id", "modal");
+
+    body.appendChild(overlay);
+    editBar.appendChild(modal);
+
 
 });

@@ -345,5 +345,60 @@ a {
 
 #edit-bar {
 	width: 100%;
+	height: 59px;
 	background-color: #000000;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	display: none;
+}
+
+#edit-bar span {
+	color: white;
+	margin-right: 21px;
+}
+
+#edit-bar i {
+	padding-right: 9px;
+}
+
+#edit-btn {
+	padding: 11px 23px;
+	height: auto;
+	color: #000000;
+	background-color: #FFFFFF;
+	border-radius: 60px;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+#edit-txt {
+	font-size: 16px;
+	font-weight: 400;
+}
+
+#overlay {
+	position: fixed;
+	background-color: #000000; 
+	opacity: 30%; 
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+}
+
+#modal {
+	width: 630px;
+	height: 731px;
+	position: absolute;
+	margin: auto;
+	top: 601px;
+	padding: 60px 105.19px 48px 104.5px;
+	background-color: #FFFFFF;
+	z-index: 2;
+}
+
+body {
+	position: relative;
 }
