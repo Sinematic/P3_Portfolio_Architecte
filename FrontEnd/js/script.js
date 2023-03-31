@@ -102,6 +102,39 @@ async function displayCategory(int) {
 }
 
 
+async function displayModalGallery() {
+
+    const url = "http://localhost:5678/api/works/"
+    const response = await fetch(url);
+    const works = await response.json();
+    const modalGallery = document.getElementById("modal-gallery");
+
+    modalGallery.innerHTML = "";
+
+    for (let i = 0; i < works.length; i++)
+    {
+        const div = document.createElement("div");
+        const img = document.createElement("img");
+        const text = document.createElement("p");
+        const divBtn = document.createElement("div");
+
+        img.src = works[i].imageUrl;
+        div.classList.add("modal-div-works");
+        img.classList.add("modal-works-img");
+        text.innerHTML = "éditer";
+
+        div.appendChild(img);
+        div.appendChild(text);
+        modalGallery.appendChild(div);
+            
+        divBtn.innerHTML = "<i class='fa-solid fa-trash-can'></i>";
+        divBtn.classList.add("div-btn");
+        div.appendChild(divBtn);
+    }
+
+}
+
+
 function displayBtnColor(btn) {
 
     const buttons = document.querySelectorAll("button");
@@ -115,6 +148,7 @@ function displayBtnColor(btn) {
     btn.style.backgroundColor = "#1D6154";
     btn.style.color = "white";
 }
+
 
 function displayEditBar() {
 
@@ -130,20 +164,17 @@ btnNoFilter.addEventListener("click", function() {
     displayBtnColor(btnNoFilter);
 });
 
-
 btnObjects.addEventListener("click", function() {
 
     displayCategory(1);
     displayBtnColor(btnObjects);
 });
 
-
 btnHouses.addEventListener("click", function() {
 
     displayCategory(2);
     displayBtnColor(btnHouses);
 });
-
 
 btnHotelsRestaurants.addEventListener("click", function() {
 
@@ -152,16 +183,38 @@ btnHotelsRestaurants.addEventListener("click", function() {
 
 });
 
+
 editBtn.addEventListener("click", function(){
 
-    const overlay = document.createElement("div");
     const body = document.querySelector("body");
-    overlay.setAttribute("id", "overlay");
+    const overlay = document.createElement("div");
     const modal = document.createElement("div");
-    modal.setAttribute("id", "modal");
+    const title = document.createElement("h1");
+    const modalGallery = document.createElement("div");
+    const modalSubmit = document.createElement("button");
+    const modalDelete = document.createElement("button");
 
+    overlay.setAttribute("id", "overlay");
     body.appendChild(overlay);
+
+    modal.setAttribute("id", "modal");
     editBar.appendChild(modal);
 
+    title.innerText = "Galerie photo";
+    title.setAttribute("id", "gallery-title");
+    modal.appendChild(title);
+
+    modalGallery.setAttribute("id", "modal-gallery");
+    modal.appendChild(modalGallery);
+
+    modalSubmit.innerHTML =  "Ajouter une photo";
+    modalSubmit.setAttribute("id", "modal-add-img");
+    modal.appendChild(modalSubmit);
+
+    modalDelete.innerHTML = "Supprimer la galerie";
+    modalDelete.setAttribute("id", "modal-delete");
+    modal.appendChild(modalDelete);
+
+    displayModalGallery();    
 
 });

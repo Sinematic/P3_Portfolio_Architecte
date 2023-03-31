@@ -344,7 +344,8 @@ a {
 
 
 #edit-bar {
-	width: 100%;
+	width: 1440px;
+	margin-left: -150px;
 	height: 59px;
 	background-color: #000000;
 	display: flex;
@@ -393,12 +394,89 @@ a {
 	height: 731px;
 	position: absolute;
 	margin: auto;
+	box-sizing: border-box;
 	top: 601px;
 	padding: 60px 105.19px 48px 104.5px;
 	background-color: #FFFFFF;
 	z-index: 2;
+	border-radius: 10px;
+	text-align: center;
+}
+
+#modal-gallery {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-template-rows: repeat(3, auto);
+	column-gap: 7px;
+	row-gap: 11px;
+	padding-bottom: 47px;
+	border-bottom: 1px solid #B3B3B3;
 }
 
 body {
 	position: relative;
 }
+
+.modal-div-works {
+	display: grid;
+	grid-template-columns: repeat(80px, 5);
+	text-align: left;
+}
+
+.modal-div-works p {
+	padding-top: 4px;
+}
+
+.modal-works-img {
+	width: 100%;
+	aspect-ratio: 80 / 104;
+}
+
+#gallery-title {
+	font-size: 26px;
+	color: #000000;
+	font-family: 'Work Sans';
+	padding-bottom: 46px;
+}
+
+#modal-add-img {
+	width: 237px;
+	padding: 9.5px 49px;
+	margin-top: 38px;
+	border-radius: 60px;
+	background-color: #1D6154;
+	color: #FFFFFF;
+	font-family: "Syne";
+	font-size: 14px;
+	font-weight: 700;
+	text-align: center;
+	white-space: nowrap;
+}
+
+#modal-delete {
+	color: #D65353;
+	font-family: "Syne";
+	padding: 23px 0px 0px 0px;
+	margin: auto;
+	font-size: 14px;
+	background-color: #FFFFFF;
+	display: block;
+	border: none;
+}
+
+.div-btn {
+	display: inline;
+	background-color: #000000;
+	color: #FFFFFF;
+	border-radius: 2px;
+	width: 17px;
+}
+
+#edit-bar .div-btn .fa-trash-can {
+	font-size: 9px;
+	padding: 4px 4px;
+}
+
+/*
+	<i class="fa-solid fa-arrows-up-down-left-right"></i>
+*/
