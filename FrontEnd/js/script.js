@@ -236,4 +236,20 @@ function generateModal() {
         overlay.remove();
     });
 
+    overlay.addEventListener("click", function(event) {
+
+        const clickInside = modal.contains(event.target);
+        console.log(clickInside);
+
+
+        if (clickInside === false) {
+
+            modal.remove();
+            overlay.remove();    
+        }
+        
+
+  
+    });
+
 }
