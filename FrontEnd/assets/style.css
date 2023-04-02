@@ -433,25 +433,34 @@ body {
 	aspect-ratio: 80 / 104;
 }
 
-#gallery-title {
+#title {
 	font-size: 26px;
 	color: #000000;
 	font-family: 'Work Sans';
 	padding-bottom: 46px;
+	font-weight: 400;
 }
 
-#modal-add-img {
+#modal-add-img, #modal-prepost-img, #modal-post-img {
 	width: 237px;
 	padding: 9.5px 49px;
 	margin-top: 38px;
 	border-radius: 60px;
-	background-color: #1D6154;
 	color: #FFFFFF;
 	font-family: "Syne";
 	font-size: 14px;
 	font-weight: 700;
 	text-align: center;
 	white-space: nowrap;
+	border: none;
+}
+
+#modal-add-img, #modal-post-img {
+	background-color: #1D6154;
+}
+
+#modal-prepost-img {
+	background-color: #A7A7A7;
 }
 
 #modal-delete {
@@ -481,18 +490,19 @@ body {
 	padding: 4px 4px 4px 4.64px;
 }
 
-#xmark {
+#xmark, #previous {
 	font-size: 20px;
 	position: absolute;
 	top: 32px;
+}
+
+#xmark {
 	right: 36px;
 }
 
-/*
-
-	<i class="fa-solid fa-arrows-up-down-left-right"></i>
-
-*/
+#previous {
+	left: 36px;
+}
 
 .edit-text {
 	font-family: "Work Sans";
@@ -525,4 +535,62 @@ body {
 
 .hidden {
 	display: none;
+}
+ 
+#modal-post-picture {
+	width: 420px;
+	height: 169px;
+	background-color: #E8F1F6;
+	border-radius: 3px;
+	margin-bottom: 30px;
+	color: #000000;
+	font-size: 10px;
+	font-size: "Work Sans";
+	box-sizing: border-box;
+	text-align: center;
+}
+
+#modal label {
+	box-sizing: border-box;
+	width: 100%;
+	padding-top: 21px;
+}
+
+#modal input {
+	box-sizing: border-box;
+	height: 51px;
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 21px;
+}
+
+#form-post-picture {
+	padding-bottom: 47px;
+	border-bottom: 1px solid #B3B3B3;
+	text-align: left;
+}
+
+#modal-prepost-img {
+	margin-top: 32px;
+}
+
+#modal input[type="file"] {
+	display: none;
+}
+
+#modal #labelImg {
+	background-color: #CBD6DC;
+	padding: 10px 33px;
+	border-radius: 50px;
+	color: #306685;
+	font-size: 14px;
+	font-weight: 700;
+}
+
+.fa-image {
+	display: block;
+	font-size: 58px;
+	color: #B9C5CC;
+	padding-top: 28px;
+	padding-bottom: 31px;
 }
