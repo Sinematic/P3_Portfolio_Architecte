@@ -18,7 +18,7 @@ const hiddenElements = document.querySelectorAll(".hidden");
 
 const token = window.localStorage.getItem("token");
 const success = window.localStorage.getItem("success-message");
-console.log(token);
+console.log(token)
 
 if (token) {
 
@@ -58,7 +58,7 @@ async function getData(url = "works") {
     for (let i = 0; i < result.length; i++)
     {
         renderWork(result[i]);
-        //console.log(result[i]);
+        // console.log(result[i]);
     }
 
 }
@@ -140,7 +140,18 @@ async function displayModalGallery() {
             
         btnTrashCan.innerHTML = "<i class='fa-solid fa-trash-can'></i>";
         btnTrashCan.classList.add("div-btn");
+        btnTrashCan.dataset.id = works[i].id;
+
+        const id = btnTrashCan.dataset.id;
+
         div.appendChild(btnTrashCan);
+
+        btnTrashCan.addEventListener("click", async function(event) {
+
+            event.preventDefault();
+            deleteWork(id);
+            generateModal();
+        });
     }
 
 }
@@ -264,6 +275,19 @@ function generateModal(modalTitle="Galerie photo") {
         modalUploadPicture();
     });
 
+
+    const deleteBtns = document.querySelectorAll(".fa-trash-can");
+
+    console.log(deleteBtns.length);
+
+    for (let i = 0; i < deleteBtns.length; i++)
+    {        
+        deleteBtns[i].addEventListener("click", function() {
+            
+            console.log("toto");
+        });
+        
+    }
 }
 
 async function modalUploadPicture() {
@@ -286,7 +310,6 @@ async function modalUploadPicture() {
     const labelCategory = document.createElement("label");
     const workTitle = document.createElement("input");
     const selectCategory = document.createElement("select");
-
 
     closeBtn.classList.add("fa-solid", "fa-xmark");
     closeBtn.setAttribute("id", "xmark");
@@ -313,6 +336,7 @@ async function modalUploadPicture() {
     divImg.appendChild(imgI);
 
     fileInput.setAttribute("type", "file");
+    fileInput.setAttribute("accept", "image/jpeg image/png");
     fileInput.setAttribute("id", "input-upload");
     divImg.appendChild(fileInput);
 
@@ -354,7 +378,6 @@ async function modalUploadPicture() {
         option.innerHTML = result[i].name;
         selectCategory.appendChild(option);
     }
-
 
     closeBtn.addEventListener("click", function() {
 
@@ -398,17 +421,17 @@ async function modalUploadPicture() {
 
     fileInput.addEventListener("change", function() {
 
-        enableButton(fileInput, workTitle, selectCategory, modalSubmit);
+        enableButton();
     });
 
     workTitle.addEventListener("change", function() {
 
-        enableButton(fileInput, workTitle, selectCategory, modalSubmit);    
+        enableButton();    
     });
 
     selectCategory.addEventListener("change", function() {
 
-        enableButton(fileInput, workTitle, selectCategory, modalSubmit);     
+        enableButton();     
     });
 
 
@@ -425,7 +448,12 @@ function closeModal() {
 
 }
 
-function enableButton(fileInput, workTitle,  selectCategory, modalSubmit) {
+function enableButton() {
+
+    const fileInput = document.getElementById("input-upload");
+    const workTitle = document.getElementById("work-title");
+    const selectCategory = document.getElementById("select-category");
+    const modalSubmit = document.getElementById("modal-prepost-img");
 
     if(selectCategory.value !== "" && workTitle.value !== "" && fileInput.value !== "") {
             
@@ -434,46 +462,22 @@ function enableButton(fileInput, workTitle,  selectCategory, modalSubmit) {
         modalSubmit.addEventListener("click", async function(event) {
 
             event.preventDefault();
-        /*
-            const fileInput = document.getElementById("input-upload");
+
             const formData = new FormData();
+
             formData.append("image", fileInput.files[0]);
             formData.append("title", workTitle.value);
-            formData.append("category", selectCategory.value);
-
+            formData.append("category", parseInt(selectCategory.value));
+            
             const response = await fetch("http://localhost:5678/api/works", {
-                method: "POST",
-                body: formData,
-                headers: { "Content-Type": "multipart/form-data" }
+              method: "POST",
+              headers: {
+                "Authorization": `Bearer ${token}`
+              },
+              body: formData
             });
 
-            const result = await response.json();
-
-            console.log(result);
-        */
-            const fileInput = document.getElementById("input-upload");
-            const formData = new FormData();
-            formData.append("image", fileInput.files[0]);
-            formData.append("title", workTitle.value);
-            formData.append("category", selectCategory.value);
-
-            try {
-                const response = await fetch("http://localhost:5678/api/works", {
-                    method: "POST",
-                    body: formData,
-                    headers: { 
-                        "Authorization": "Bearer" + token,
-                        "Content-Type": "multipart/form-data"
-                    }
-
-                });
-
-                const data = await response.json();
-                console.log(data);
-            } catch(error) {
-                console.log(error);
-            }
-
+            console.log(response);
         });
         
 
@@ -481,5 +485,21 @@ function enableButton(fileInput, workTitle,  selectCategory, modalSubmit) {
 
         modalSubmit.style.backgroundColor = "#A7A7A7";
     }
+
+}
+
+async function deleteWork(id) {
+
+    const response = await fetch(`http://localhost:5678/api/works/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    });
+
+    window.localStorage.setItem("success-message", "Publication supprimée de la galerie.");
+
+    console.log(response);
 
 }

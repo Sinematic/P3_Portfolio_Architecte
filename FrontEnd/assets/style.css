@@ -154,6 +154,8 @@ li:hover {
 
 .gallery img {
 	width: 100%;
+	aspect-ratio: 366 / 491;
+	object-fit: cover;
 
 }
 
