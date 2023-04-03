@@ -18,6 +18,7 @@ const hiddenElements = document.querySelectorAll(".hidden");
 
 const token = window.localStorage.getItem("token");
 const success = window.localStorage.getItem("success-message");
+console.log(token);
 
 if (token) {
 
@@ -57,6 +58,7 @@ async function getData(url = "works") {
     for (let i = 0; i < result.length; i++)
     {
         renderWork(result[i]);
+        //console.log(result[i]);
     }
 
 }
@@ -86,7 +88,7 @@ async function getCategories() {
 
     for(let i = 0; i < result.length; i++)
     {
-        // console.log(result[i].name);
+        //console.log(result[i].name);
     }
 }
 
@@ -264,7 +266,7 @@ function generateModal(modalTitle="Galerie photo") {
 
 }
 
-function modalUploadPicture() {
+async function modalUploadPicture() {
 
     const modal = document.getElementById("modal");
     modal.style.height = "670px";
@@ -283,7 +285,7 @@ function modalUploadPicture() {
     const labelTitle = document.createElement("label");
     const labelCategory = document.createElement("label");
     const workTitle = document.createElement("input");
-    const workCategory = document.createElement("input");
+    const selectCategory = document.createElement("select");
 
 
     closeBtn.classList.add("fa-solid", "fa-xmark");
@@ -311,13 +313,11 @@ function modalUploadPicture() {
     divImg.appendChild(imgI);
 
     fileInput.setAttribute("type", "file");
-    fileInput.setAttribute("type", "file");
     fileInput.setAttribute("id", "input-upload");
     divImg.appendChild(fileInput);
 
     workTitle.setAttribute("id", "work-title");
-    workCategory.setAttribute("id", "work-category");
-
+    selectCategory.setAttribute("id", "select-category");
 
     labelImg.htmlFor = "input-upload";
     labelImg.setAttribute("id", "labelImg");
@@ -334,15 +334,27 @@ function modalUploadPicture() {
     labelCategory.innerHTML = "Catégorie";
     labelCategory.classList.add("labelModal");
     form.appendChild(labelCategory);
-    form.appendChild(workCategory);
+    form.appendChild(selectCategory);
 
-    
     modalSubmit.innerHTML =  "Ajouter une photo";
     modalSubmit.setAttribute("id", "modal-prepost-img");
     modal.appendChild(modalSubmit);
 
+    const option = document.createElement("option");
+    option.value = "";
+    selectCategory.appendChild(option);
 
-    
+    const response = await fetch("http://localhost:5678/api/categories");
+    const result = await response.json();
+
+    for (let i = 0; i < result.length; i++)
+    {
+        const option = document.createElement("option");
+        option.value = result[i].id;
+        option.innerHTML = result[i].name;
+        selectCategory.appendChild(option);
+    }
+
 
     closeBtn.addEventListener("click", function() {
 
@@ -365,7 +377,43 @@ function modalUploadPicture() {
         generateModal();
     });
 
+    fileInput.addEventListener("change", function(event) {
+
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.addEventListener("load", function(event) {
+                
+            const img = new Image();
+            img.setAttribute("src", event.target.result);
+            img.setAttribute("id", "img-minia");
+            //divImg.innerHTML = "";
+            document.querySelector(".fa-image").style.display = "none";
+            document.querySelector("#labelImg").style.display = "none";
+            divImg.appendChild(img);
+        });
+
+        reader.readAsDataURL(file);
+    });
+
+    fileInput.addEventListener("change", function() {
+
+        enableButton(fileInput, workTitle, selectCategory, modalSubmit);
+    });
+
+    workTitle.addEventListener("change", function() {
+
+        enableButton(fileInput, workTitle, selectCategory, modalSubmit);    
+    });
+
+    selectCategory.addEventListener("change", function() {
+
+        enableButton(fileInput, workTitle, selectCategory, modalSubmit);     
+    });
+
+
 }
+
 
 function closeModal() {
 
@@ -374,5 +422,64 @@ function closeModal() {
 
     modal.remove();
     overlay.remove(); 
+
+}
+
+function enableButton(fileInput, workTitle,  selectCategory, modalSubmit) {
+
+    if(selectCategory.value !== "" && workTitle.value !== "" && fileInput.value !== "") {
+            
+        modalSubmit.style.backgroundColor = "#1D6154";
+
+        modalSubmit.addEventListener("click", async function(event) {
+
+            event.preventDefault();
+        /*
+            const fileInput = document.getElementById("input-upload");
+            const formData = new FormData();
+            formData.append("image", fileInput.files[0]);
+            formData.append("title", workTitle.value);
+            formData.append("category", selectCategory.value);
+
+            const response = await fetch("http://localhost:5678/api/works", {
+                method: "POST",
+                body: formData,
+                headers: { "Content-Type": "multipart/form-data" }
+            });
+
+            const result = await response.json();
+
+            console.log(result);
+        */
+            const fileInput = document.getElementById("input-upload");
+            const formData = new FormData();
+            formData.append("image", fileInput.files[0]);
+            formData.append("title", workTitle.value);
+            formData.append("category", selectCategory.value);
+
+            try {
+                const response = await fetch("http://localhost:5678/api/works", {
+                    method: "POST",
+                    body: formData,
+                    headers: { 
+                        "Authorization": "Bearer" + token,
+                        "Content-Type": "multipart/form-data"
+                    }
+
+                });
+
+                const data = await response.json();
+                console.log(data);
+            } catch(error) {
+                console.log(error);
+            }
+
+        });
+        
+
+    } else {
+
+        modalSubmit.style.backgroundColor = "#A7A7A7";
+    }
 
 }
