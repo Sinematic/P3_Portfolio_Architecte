@@ -419,6 +419,7 @@ async function modalUploadPicture() {
             //divImg.innerHTML = "";
             document.querySelector(".fa-image").style.display = "none";
             document.querySelector("#labelImg").style.display = "none";
+            document.querySelector("#comment").style.display = "none";
             divImg.appendChild(img);
         });
 
