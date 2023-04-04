@@ -70,6 +70,6 @@ export function displaySuccess(localStorageValue, parentElement, id="") {
     {
         message.remove();
         window.localStorage.removeItem("success-message");
-    }, 5000);
+    }, 6665000);
 
 }

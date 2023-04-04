@@ -310,6 +310,7 @@ async function modalUploadPicture() {
     const labelCategory = document.createElement("label");
     const workTitle = document.createElement("input");
     const selectCategory = document.createElement("select");
+    const info = document.createElement("p");
 
     closeBtn.classList.add("fa-solid", "fa-xmark");
     closeBtn.setAttribute("id", "xmark");
@@ -337,6 +338,7 @@ async function modalUploadPicture() {
 
     fileInput.setAttribute("type", "file");
     fileInput.setAttribute("accept", "image/jpeg image/png");
+    fileInput.setAttribute("maxlength", "4000000");
     fileInput.setAttribute("id", "input-upload");
     divImg.appendChild(fileInput);
 
@@ -347,6 +349,10 @@ async function modalUploadPicture() {
     labelImg.setAttribute("id", "labelImg");
     labelImg.innerHTML = "+ Ajouter photo";
     divImg.appendChild(labelImg);
+
+    info.innerText = "jpg, png : 4mo max";
+    info.setAttribute("id", "comment");
+    divImg.appendChild(info);
 
     labelTitle.htmlFor = "work-title";
     labelTitle.innerHTML = "Titre";

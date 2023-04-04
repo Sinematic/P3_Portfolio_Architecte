@@ -340,8 +340,10 @@ a {
 
 
 #authentified {
-	margin-top: -2625px;
-	margin-bottom: 2625px;
+	position: absolute;
+	top: 100px;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
 
@@ -609,4 +611,14 @@ select {
 	width: 129px;
 	object-fit: cover;
 	aspect-ratio: 129 / 169;
+}
+
+#modal-post-picture p {
+	font-family: "Work Sans";
+	font-size: 10px;
+	font-weight: 400;
+	text-align: center;
+	color: #000000;
+	margin: auto;
+	margin-top: 18px;
 }
