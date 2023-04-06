@@ -435,6 +435,7 @@ body {
 .modal-works-img {
 	width: 100%;
 	aspect-ratio: 80 / 104;
+	object-fit: cover;
 }
 
 #title {

@@ -491,6 +491,7 @@ function enableButton() {
     } else {
 
         modalSubmit.style.backgroundColor = "#A7A7A7";
+        displayError("Merci de renseigner tous les champs", document.getElementById("modal"), "wrong-data");//////
     }
 
 }
