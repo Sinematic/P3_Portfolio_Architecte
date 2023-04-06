@@ -526,6 +526,11 @@ body {
 	border: none;
 }
 
+#portfolio > #edit-btn, #introduction > #fake-edit-btn {
+	color: black !important;
+}
+
+
 #fake-edit-btn {
 	position: absolute;
 	padding: 0;
@@ -622,4 +627,8 @@ select {
 	color: #000000;
 	margin: auto;
 	margin-top: 18px;
+}
+
+#wrong-data {
+	margin-top: -100px;
 }

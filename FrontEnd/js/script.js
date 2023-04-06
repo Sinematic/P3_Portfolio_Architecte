@@ -462,13 +462,11 @@ function enableButton() {
     const selectCategory = document.getElementById("select-category");
     const modalSubmit = document.getElementById("modal-prepost-img");
 
-    if(selectCategory.value !== "" && workTitle.value !== "" && fileInput.value !== "") {
-            
-        modalSubmit.style.backgroundColor = "#1D6154";
+    modalSubmit.addEventListener("click", async function(event) {
 
-        modalSubmit.addEventListener("click", async function(event) {
+        event.preventDefault();
 
-            event.preventDefault();
+        if (selectCategory.value !== "" && workTitle.value !== "" && fileInput.value !== "") {
 
             const formData = new FormData();
 
@@ -484,14 +482,23 @@ function enableButton() {
               body: formData
             });
 
-            console.log(response);
-        });
+        } else {
+            modalSubmit.style.backgroundColor = "#A7A7A7";
+            displayError("Merci de renseigner tous les champs", document.getElementById("modal"), "wrong-data");
+        }
         
+
+        console.log(response);
+    });
+    
+
+    if(selectCategory.value !== "" && workTitle.value !== "" && fileInput.value !== "") {
+            
+        modalSubmit.style.backgroundColor = "#1D6154";
 
     } else {
 
         modalSubmit.style.backgroundColor = "#A7A7A7";
-        displayError("Merci de renseigner tous les champs", document.getElementById("modal"), "wrong-data");//////
     }
 
 }
