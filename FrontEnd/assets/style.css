@@ -490,9 +490,15 @@ body {
 	top: 5px;
 }
 
-#edit-bar .div-btn .fa-trash-can {
+#edit-bar .div-btn .fa-trash-can, .fa-arrows-up-down-left-right {
 	font-size: 9px;
 	padding: 4px 4px 4px 4.64px;
+}
+
+#edit-bar .fa-arrows-up-down-left-right {
+	top: 137px;
+	left: 141px;
+	padding: 4px 0 4px 0;
 }
 
 #xmark, #previous {

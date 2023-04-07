@@ -231,6 +231,7 @@ function generateModal(modalTitle="Galerie photo") {
     const modalSubmit = document.createElement("button");
     const modalDelete = document.createElement("button");
     const closeBtn = document.createElement("i");
+    const drag = document.createElement("i");
 
     closeBtn.classList.add("fa-solid", "fa-xmark");
     closeBtn.setAttribute("id", "xmark");
@@ -256,6 +257,9 @@ function generateModal(modalTitle="Galerie photo") {
     modalDelete.innerHTML = "Supprimer la galerie";
     modalDelete.setAttribute("id", "modal-delete");
     modal.appendChild(modalDelete);
+
+    drag.classList.add("fa-solid", "fa-arrows-up-down-left-right", "div-btn");
+    modal.appendChild(drag);
 
     displayModalGallery(); 
 
